@@ -40,7 +40,9 @@ enum combos {
   XC_LBRC, // x+c => [
   CV_RBRC, // c+v => ]
   WE_LCBR, // w+e => {
-  ER_RCBR  // e+r => }
+  ER_RCBR, // e+r => }
+  QW_OPEN_CLJ_SET, // q+w => #{
+  QS_OPEN_CLJ_FN   // q+w => #(
 };
 
 const uint16_t PROGMEM sd_combo [] = { KC_S, KC_D, COMBO_END };
@@ -50,6 +52,8 @@ const uint16_t PROGMEM xc_combo [] = { KC_X, KC_C, COMBO_END };
 const uint16_t PROGMEM cv_combo [] = { KC_C, KC_V, COMBO_END };
 const uint16_t PROGMEM we_combo [] = { KC_W, KC_E, COMBO_END };
 const uint16_t PROGMEM er_combo [] = { KC_E, KC_R, COMBO_END };
+const uint16_t PROGMEM qw_combo [] = { KC_Q, KC_W, COMBO_END };
+const uint16_t PROGMEM qs_combo [] = { KC_Q, KC_S, COMBO_END };
 
 combo_t key_combos[COMBO_COUNT] = {
   [SD_LPRN] = COMBO(sd_combo, KC_LPRN),
@@ -58,8 +62,29 @@ combo_t key_combos[COMBO_COUNT] = {
   [XC_LBRC] = COMBO(xc_combo, KC_LBRC),
   [CV_RBRC] = COMBO(cv_combo, KC_RBRC),
   [WE_LCBR] = COMBO(we_combo, KC_LCBR),
-  [ER_RCBR] = COMBO(er_combo, KC_RCBR)
+  [ER_RCBR] = COMBO(er_combo, KC_RCBR),
+  [QW_OPEN_CLJ_SET] = COMBO_ACTION(qw_combo),
+  [QS_OPEN_CLJ_FN]  = COMBO_ACTION(qs_combo)
 };
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case QW_OPEN_CLJ_SET:
+      if (pressed) {
+        tap_code16(KC_HASH);
+        tap_code16(KC_LCBR);
+      }
+      break;
+    case QS_OPEN_CLJ_FN:
+      if (pressed) {
+        tap_code16(KC_HASH);
+        tap_code16(KC_LPRN);
+      }
+      break;
+  }
+}
+
+//end combos
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
