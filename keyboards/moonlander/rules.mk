@@ -27,3 +27,6 @@ EEPROM_DRIVER = i2c
 #project specific files
 SRC += matrix.c
 QUANTUM_LIB_SRC += i2c_master.c
+
+#frenchy64 moonlander
+COMBO_ENABLE      = yes     # simultaneous key combinations
