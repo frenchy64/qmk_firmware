@@ -24,3 +24,7 @@
 #define COMBO_COUNT 9
 // how long in ms before a tap becomes a hold
 #define TAPPING_TERM 200
+// how long in ms a combo times out
+#define COMBO_TERM 10
+// backlight indicators for current layer
+#define RGBLIGHT_LAYERS

@@ -20,6 +20,7 @@
 
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include <print.h>
 
 enum layers {
     BASE,  // default layer
@@ -42,7 +43,7 @@ enum combos {
   WE_LCBR, // w+e => {
   ER_RCBR, // e+r => }
   QW_OPEN_CLJ_SET, // q+w => #{
-  QS_OPEN_CLJ_FN   // q+w => #(
+  QS_OPEN_CLJ_FN   // q+s => #(
 };
 
 const uint16_t PROGMEM sd_combo [] = { KC_S, KC_D, COMBO_END };
@@ -91,9 +92,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_LEFT,           KC_RGHT, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
         KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(SYMB),         TG(SYMB), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_HYPR,           KC_MEH,  KC_H,    KC_J,    KC_K,    KC_L,    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
+        KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    TG(MDIA),         TG(MDIA),  KC_H,    KC_J,    KC_K,    KC_L,    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
         KC_LSFT, LCTL_T(KC_Z),KC_X,KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), KC_RSFT,
-    LT(SYMB,KC_GRV),WEBUSB_PAIR,A(KC_LSFT),KC_LEFT, KC_RGHT,  LALT_T(KC_APP),    RCTL_T(KC_ESC),   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, MO(SYMB),
+    LT(SYMB,KC_GRV),WEBUSB_PAIR,A(KC_LSFT),KC_LEFT,  KC_RGHT, LALT_T(KC_APP),    RCTL_T(KC_ESC),   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, MO(SYMB),
                                             KC_SPC,  KC_BSPC, KC_LGUI,           KC_LALT,  KC_TAB,  KC_ENT
     ),
 
@@ -117,6 +118,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef CONSOLE_ENABLE
+    dprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
+#endif 
+
     if (record->event.pressed) {
         switch (keycode) {
         case VRSN:
@@ -125,4 +130,121 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
     return true;
+}
+
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  //debug_matrix=true;
+  //debug_keyboard=true;
+  //debug_mouse=true;
+
+  //attempt to turn off default rbg animation
+  rgb_matrix_set_flags(LED_FLAG_NONE);
+  //keyboard_config.rgb_matrix_enable = false;
+  //rgb_matrix_set_color_all(0, 0, 0);
+}
+
+/*
+ * LED identifiers:
+
+        0 5 10 15 20 25 29             65 61 56 51 46 41 36
+        1 6 11 16 21 26 30             66 62 57 52 47 42 37
+        2 7 12 17 22 27 31             67 63 58 53 48 43 38
+        3 8 13 18 23 28                   64 59 54 49 44 39
+        4 9 14 19 24          35 71          60 55 50 45 40
+                        32 33 34 70 69 68
+*/
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  //print debugging for current layer
+#ifdef CONSOLE_ENABLE
+  switch(get_highest_layer(state)) {
+    case BASE:
+      dprintf("BASE layer\n");
+      for (uint8_t i = 0; i<DRIVER_LED_TOTAL; i++) {
+        switch(i%10) {
+          case 0:
+            rgb_matrix_set_color(i, 0, 0xff, 0);
+            break;
+          default:
+            switch(((i%10)+1)%5) {
+              case 0:
+                rgb_matrix_set_color(i, 0x80, 0, 0);
+                break;
+              case 1:
+                rgb_matrix_set_color(i, 0xff, 0, 0);
+                break;
+              case 2:
+                rgb_matrix_set_color(i, 0, 0, 0x80);
+                break;
+              case 3:
+                rgb_matrix_set_color(i, 0, 0, 0xff);
+                break;
+              case 4:
+                rgb_matrix_set_color(i, 0, 0xff, 0xff);
+                break;
+            }
+            break;
+        }
+      }
+      break;
+    case SYMB:
+      dprintf("SYMB layer\n");
+      for (uint8_t i = 0; i<DRIVER_LED_TOTAL; i++) {
+        switch(i) {
+          case 29:
+            rgb_matrix_set_color(i, 0xff, 0xff, 0xff);
+            break;
+          case 30:
+            rgb_matrix_set_color(i, 0x60, 0, 0);
+            break;
+          case 31:
+            rgb_matrix_set_color(i, 0xff, 0, 0);
+            break;
+          case 32:
+            rgb_matrix_set_color(i, 0, 0x60, 0);
+            break;
+          case 33:
+            rgb_matrix_set_color(i, 0, 0xff, 0);
+            break;
+          case 34:
+            rgb_matrix_set_color(i, 0, 0, 0x60);
+            break;
+          case 35:
+            rgb_matrix_set_color(i, 0, 0, 0xff);
+            break;
+          case 36:
+            rgb_matrix_set_color(i, 0, 0x60, 0x60);
+            break;
+          case 37:
+            rgb_matrix_set_color(i, 0, 0xff, 0xff);
+            break;
+          case 38:
+            rgb_matrix_set_color(i, 0x60, 0x60, 0);
+            break;
+          case 39:
+            rgb_matrix_set_color(i, 0xff, 0xff, 0);
+            break;
+          case 40:
+            rgb_matrix_set_color(i, 0xff, 0xff, 0xff);
+            break;
+          default:
+            rgb_matrix_set_color(i, 0, 0, 0);
+            break;
+        }
+      }
+      break;
+    case MDIA:
+      dprintf("MDIA layer\n");
+      rgb_matrix_set_color_all(0, 0, 0xff);
+      break;
+    default:
+      dprintf("Unknown layer\n");
+      rgb_matrix_set_color_all(0, 0, 0);
+      break;
+  }
+#endif 
+
+    return state;
 }
