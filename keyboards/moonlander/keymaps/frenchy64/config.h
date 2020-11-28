@@ -28,3 +28,6 @@
 #define COMBO_TERM 10
 // backlight indicators for current layer
 #define RGBLIGHT_LAYERS
+
+// combined mouse accel+constant mode
+#define MK_COMBINE

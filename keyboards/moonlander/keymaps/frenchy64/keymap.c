@@ -111,9 +111,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LED_LEVEL,_______,   _______, _______, _______,    _______, TO(SYMB),           TO(BASE), _______, _______, _______, _______, _______, RESET,
         _______, _______,    KC_WH_U, KC_MS_U, KC_WH_D,    _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______,    KC_MS_L, KC_MS_D, KC_MS_R,    _______, _______,           _______, _______, _______, _______, _______, _______, KC_MPLY,
-        _______, KC_MS_BTN1, _______, _______, _______,    _______,                             _______, _______, KC_MPRV, KC_MNXT, _______, _______,
-        _______, _______,    _______, _______, KC_MS_BTN2,          _______,           _______,          KC_VOLU, KC_VOLD, KC_MUTE, _______, _______,
-                                               KC_MS_BTN1, KC_BTN2, _______,           _______, _______, _______
+        _______, _______, _______, _______, _______,    _______,                             _______, _______, KC_MPRV, KC_MNXT, _______, _______,
+        _______, _______,    _______, _______, _______,          _______,           _______,          KC_VOLU, KC_VOLD, KC_MUTE, _______, _______,
+                                               KC_MS_BTN1, KC_BTN2, _______,           KC_ACL2, KC_ACL1, KC_ACL0
     ),
 };
 
@@ -173,6 +173,11 @@ void set_number_key_led_white(uint8_t layer_num) {
       rgb_matrix_set_color(12, 0xff, 0xff, 0xff);
       rgb_matrix_set_color(17, 0xff, 0xff, 0xff);
       rgb_matrix_set_color(22, 0xff, 0xff, 0xff);
+      // mouse speeds
+      rgb_matrix_set_color(68, 0xff, 0, 0);
+      rgb_matrix_set_color(69, 0xff, 0xff, 0);
+      rgb_matrix_set_color(70, 0, 0xff, 0);
+
       break;
     default:
       break;
