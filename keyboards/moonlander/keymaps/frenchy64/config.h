@@ -31,3 +31,5 @@
 
 // combined mouse accel+constant mode
 #define MK_COMBINE
+
+#define LEADER_TIMEOUT 300

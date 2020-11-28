@@ -36,36 +36,36 @@ enum custom_keycodes {
 
 enum combos {
   SD_LPRN, // s+d => (
-  DF_RPRN, // d+f => )
-  JK_ESC,  // j+k => esc
+  DG_RPRN, // d+g => )
   XC_LBRC, // x+c => [
   CV_RBRC, // c+v => ]
   WE_LCBR, // w+e => {
   ER_RCBR, // e+r => }
   QW_OPEN_CLJ_SET, // q+w => #{
-  QS_OPEN_CLJ_FN   // q+s => #(
+  QS_OPEN_CLJ_FN,   // q+s => #(
+  KL_ONE_SHOT_SHIFT
 };
 
 const uint16_t PROGMEM sd_combo [] = { KC_S, KC_D, COMBO_END };
-const uint16_t PROGMEM df_combo [] = { KC_D, KC_F, COMBO_END };
-const uint16_t PROGMEM jk_combo [] = { KC_J, KC_K, COMBO_END };
+const uint16_t PROGMEM dg_combo [] = { KC_D, KC_G, COMBO_END };
 const uint16_t PROGMEM xc_combo [] = { KC_X, KC_C, COMBO_END };
 const uint16_t PROGMEM cv_combo [] = { KC_C, KC_V, COMBO_END };
 const uint16_t PROGMEM we_combo [] = { KC_W, KC_E, COMBO_END };
 const uint16_t PROGMEM er_combo [] = { KC_E, KC_R, COMBO_END };
 const uint16_t PROGMEM qw_combo [] = { KC_Q, KC_W, COMBO_END };
 const uint16_t PROGMEM qs_combo [] = { KC_Q, KC_S, COMBO_END };
+const uint16_t PROGMEM kl_combo [] = { KC_K, KC_L, COMBO_END };
 
 combo_t key_combos[COMBO_COUNT] = {
   [SD_LPRN] = COMBO(sd_combo, KC_LPRN),
-  [DF_RPRN] = COMBO(df_combo, KC_RPRN),
-  [JK_ESC]  = COMBO(jk_combo, KC_ESC),
+  [DG_RPRN] = COMBO(dg_combo, KC_RPRN),
   [XC_LBRC] = COMBO(xc_combo, KC_LBRC),
   [CV_RBRC] = COMBO(cv_combo, KC_RBRC),
   [WE_LCBR] = COMBO(we_combo, KC_LCBR),
   [ER_RCBR] = COMBO(er_combo, KC_RCBR),
   [QW_OPEN_CLJ_SET] = COMBO_ACTION(qw_combo),
-  [QS_OPEN_CLJ_FN]  = COMBO_ACTION(qs_combo)
+  [QS_OPEN_CLJ_FN]  = COMBO_ACTION(qs_combo),
+  [KL_ONE_SHOT_SHIFT] = COMBO(kl_combo, OSM(MOD_LSFT))
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -90,13 +90,12 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,           TO(SYMB), KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-        KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(SYMB),         TG(SYMB), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    TG(MDIA),         TG(MDIA),  KC_H,    KC_J,    KC_K,    KC_L,    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
+        KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,           TO(SYMB), KC_6,  KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(SYMB),         XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+        KC_BSPC, KC_A,    KC_S, LCTL_T(KC_D),LSFT_T(KC_F),KC_G,KC_BSPC,         TG(MDIA),KC_H, RSFT_T(KC_J),RCTL_T(KC_K),    KC_L,    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
         KC_LSFT, LCTL_T(KC_Z),KC_X,KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), KC_RSFT,
-    LT(SYMB,KC_GRV),WEBUSB_PAIR,A(KC_LSFT),KC_LEFT,  KC_RGHT, LALT_T(KC_APP),    RCTL_T(KC_ESC),   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, MO(SYMB),
-                                            KC_SPC,  KC_BSPC, KC_LGUI,           KC_LALT,  KC_TAB,  KC_ENT
-    ),
+    LT(SYMB,KC_GRV),WEBUSB_PAIR,A(KC_LSFT),KC_LEFT,  KC_RGHT, KC_LEAD,    KC_LEAD,   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, MO(SYMB),
+                                            LCMD_T(KC_SPC),  KC_BSPC, KC_LGUI,           KC_LALT,  KC_ENT, KC_ESC),
 
     [SYMB] = LAYOUT_moonlander(
         VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   TO(BASE),           TO(MDIA), KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
@@ -162,6 +161,8 @@ void set_number_key_led_white(uint8_t layer_num) {
     case BASE:
       // top left layer indicator
       rgb_matrix_set_color(0, 0xff, 0xff, 0xff);
+      //test
+      rgb_matrix_set_color(72, 0xff, 0xff, 0xff);
       break;
     case SYMB:
       rgb_matrix_set_color(5, 0xff, 0xff, 0xff);
@@ -211,3 +212,75 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
     return state;
 }
+
+// leaders
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_THREE_KEYS(KC_S, KC_P, KC_I) {
+      SEND_STRING("|");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_H, KC_A) {
+      SEND_STRING("#");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_B, KC_A) {
+      SEND_STRING("!");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_P, KC_E) {
+      SEND_STRING("%");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_C, KC_A) {
+      SEND_STRING("^");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_A, KC_M) {
+      SEND_STRING("&");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_S, KC_T) {
+      SEND_STRING("*");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_A, KC_T) {
+      SEND_STRING("@");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_U, KC_N) {
+      SEND_STRING("_");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_M, KC_I) {
+      SEND_STRING("-");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_P, KC_L) {
+      SEND_STRING("+");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_T, KC_I) {
+      SEND_STRING("~");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_Q, KC_Q) {
+      SEND_STRING("`");
+    }
+    SEQ_THREE_KEYS(KC_S, KC_Q, KC_U) {
+      SEND_STRING("'");
+    }
+
+
+    //SEQ_ONE_KEY(KC_F) {
+    //  // Anything you can do in a macro.
+    //  SEND_STRING("QMK is awesome.");
+    //}
+    //SEQ_TWO_KEYS(KC_D, KC_D) {
+    //  SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+    //}
+    //SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
+    //  SEND_STRING("https://start.duckduckgo.com\n");
+    //}
+    //SEQ_TWO_KEYS(KC_A, KC_S) {
+    //  register_code(KC_LGUI);
+    //  register_code(KC_S);
+    //  unregister_code(KC_S);
+    //  unregister_code(KC_LGUI);
+    //}
+  }
+}
+
