@@ -39,16 +39,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX,         XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         XXXXXXX, KC_A,    LT(SYMB, KC_S), LCTL_T(KC_D),LSFT_T(KC_F),KC_G,KC_BSPC,         MO(MDIA),LT(MDIA,KC_H), RSFT_T(KC_J),RCTL_T(KC_K),LT(SYMB,KC_L),    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
         KC_LSFT, KC_Z, KC_X,KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), KC_RSFT,
-    LT(SYMB,KC_GRV),WEBUSB_PAIR,A(KC_LSFT),KC_LEFT,  KC_RGHT, KC_LEAD,    KC_LEAD,   KC_DOWN, KC_UP, KC_LBRC, KC_RBRC, MO(SYMB),
+    KC_GRV,XXXXXXX,A(KC_LSFT),KC_LEFT,  KC_RGHT, KC_LEAD,    KC_LEAD,   KC_DOWN, KC_UP, KC_LBRC, KC_RBRC, MO(SYMB),
                                             LCMD_T(KC_SPC),  KC_BSPC, KC_MEH,           KC_LALT,  KC_ENT, RCMD_T(KC_ESC)),
 
     [SYMB] = LAYOUT_moonlander(
         VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   TO(BASE),          _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, _______,           _______, KC_UP,   KC_7,    KC_8,    KC_9,    KC_ASTR, KC_F12,
-        _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,  _______,           _______, KC_DOWN, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
+        _______, KC_HASH, KC_DLR,  LCTL_T(KC_LPRN), LSFT_T(KC_RPRN), KC_GRV,  _______,           _______, RSFT_T(KC_DOWN), RCTL_T(KC_4),    KC_5,    KC_6,    KC_PLUS, _______,
         _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                             KC_AMPR, KC_1,    KC_2,    KC_3,    KC_BSLS, _______,
         _______, _______, _______, _______, _______,          RGB_VAI,           RGB_TOG,          KC_0, KC_DOT,  KC_0,    KC_EQL,  _______,
-                                            RGB_HUD, RGB_VAD, RGB_HUI, TOGGLE_LAYER_COLOR,_______, _______
+                                            KC_TAB, RGB_VAD, RGB_HUI, TOGGLE_LAYER_COLOR,_______, _______
     ),
 
     [MDIA] = LAYOUT_moonlander(
