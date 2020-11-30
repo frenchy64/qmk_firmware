@@ -25,6 +25,7 @@
 enum layers {
     BASE,  // default layer
     SYMB,  // symbols
+    SQUASH, // make outer keys reachable
     MDIA,  // media keys
 };
 
@@ -36,24 +37,33 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,         XXXXXXX, KC_6,  KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-        KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX,         XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-        XXXXXXX, KC_A,    LT(SYMB, KC_S), LCTL_T(KC_D),LSFT_T(KC_F),KC_G,KC_BSPC,         MO(MDIA),LT(MDIA,KC_H), RSFT_T(KC_J),RCTL_T(KC_K),LT(SYMB,KC_L),    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
-        KC_LSFT, KC_Z, KC_X,KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), KC_RSFT,
-    KC_GRV,XXXXXXX,A(KC_LSFT),KC_LEFT,  KC_RGHT, KC_LEAD,    KC_LEAD,   KC_DOWN, KC_UP, KC_LBRC, KC_RBRC, MO(SYMB),
-                                            LCMD_T(KC_SPC),  KC_BSPC, KC_MEH,           KC_LALT,  KC_ENT, RCMD_T(KC_ESC)),
+        XXXXXXX,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX,         XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+        XXXXXXX, KC_A,    LT(SYMB, KC_S), LCTL_T(KC_D),LSFT_T(KC_F),KC_G,KC_BSPC,         XXXXXXX,LT(MDIA,KC_H), LSFT_T(KC_J),LCTL_T(KC_K),LT(SYMB,KC_L),    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
+        KC_LSFT, KC_Z, KC_X,KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
+    KC_GRV,XXXXXXX,A(KC_LSFT),KC_LEFT,  KC_RGHT, KC_LEAD,                         KC_LEAD,   KC_DOWN, KC_UP, XXXXXXX, XXXXXXX, XXXXXXX,
+                                            LCMD_T(KC_SPC),  KC_BSPC, KC_MEH,           KC_LALT,  KC_ENT, LCMD_T(KC_ESC)),
 
     [SYMB] = LAYOUT_moonlander(
         VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   TO(BASE),          _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-        _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, _______,           _______, KC_UP,   KC_7,    KC_8,    KC_9,    KC_ASTR, KC_F12,
-        _______, KC_HASH, KC_DLR,  LCTL_T(KC_LPRN), LSFT_T(KC_RPRN), KC_GRV,  _______,           _______, RSFT_T(KC_DOWN), RCTL_T(KC_4),    KC_5,    KC_6,    KC_PLUS, _______,
-        _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                             KC_AMPR, KC_1,    KC_2,    KC_3,    KC_BSLS, _______,
-        _______, _______, _______, _______, _______,          RGB_VAI,           RGB_TOG,          KC_0, KC_DOT,  KC_0,    KC_EQL,  _______,
-                                            KC_TAB, RGB_VAD, RGB_HUI, TOGGLE_LAYER_COLOR,_______, _______
+        _______, XXXXXXX, KC_Q,KC_PIPE, KC_SLSH, XXXXXXX, _______,           _______, KC_UP,   KC_7,    KC_8,    KC_9,    XXXXXXX, KC_F12,
+       _______,XXXXXXX,KC_A,LCTL_T(KC_MINS),LSFT_T(KC_PLUS),KC_GRV,_______,   _______, KC_DOWN, LSFT_T(KC_4), LCTL_T(KC_5),    KC_6, XXXXXXX, XXXXXXX,
+    _______, XXXXXXX, KC_Z, KC_LBRC, KC_RBRC, XXXXXXX,                             KC_AMPR, KC_1,    KC_2,    KC_3,    XXXXXXX, XXXXXXX,
+        _______, _______, _______, _______, _______,          XXXXXXX,           RGB_TOG,          KC_0, KC_DOT,  XXXXXXX, XXXXXXX,  XXXXXXX,
+                                            LT(SQUASH,KC_TAB), XXXXXXX, XXXXXXX,              LT(SQUASH,KC_TAB),KC_P, XXXXXXX
+    ),
+
+    [SQUASH] = LAYOUT_moonlander(
+        XXXXXXX,XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, TO(BASE),           TO(BASE), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX,    XXXXXXX, KC_Q, KC_T,    XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX,    XXXXXXX, KC_A, KC_G,    XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_Z, KC_B,    XXXXXXX,                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,           XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                               XXXXXXX, XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, XXXXXXX
     ),
 
     [MDIA] = LAYOUT_moonlander(
         LED_LEVEL,_______,   _______, _______, _______,    _______, TO(BASE),           TO(BASE), _______, _______, _______, _______, _______, RESET,
-        _______, _______,    KC_WH_U, KC_MS_U, KC_WH_D,    _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______,    KC_WH_D, KC_MS_U, KC_WH_U,    _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______,    KC_MS_L, KC_MS_D, KC_MS_R,    _______, _______,           _______, _______, _______, _______, _______, _______, KC_MPLY,
         _______, _______, _______, _______, _______,    _______,                             _______, _______, KC_MPRV, KC_MNXT, _______, _______,
         _______, _______,    _______, _______, _______,          _______,           _______,          KC_VOLU, KC_VOLD, KC_MUTE, _______, _______,
@@ -112,8 +122,11 @@ void set_number_key_led_white(uint8_t layer_num) {
     case SYMB:
       rgb_matrix_set_color(5, 0xff, 0xff, 0xff);
       break;
-    case MDIA:
+    case SQUASH:
       rgb_matrix_set_color(10, 0xff, 0xff, 0xff);
+      break;
+    case MDIA:
+      rgb_matrix_set_color(15, 0xff, 0xff, 0xff);
       // mouse keys
       rgb_matrix_set_color(16, 0xff, 0xff, 0xff);
       rgb_matrix_set_color(12, 0xff, 0xff, 0xff);
