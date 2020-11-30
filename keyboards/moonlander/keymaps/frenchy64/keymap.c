@@ -36,27 +36,27 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,         XXXXXXX, KC_6,  KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        XXXXXXX,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,         XXXXXXX, KC_6,  KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
         XXXXXXX,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX,        XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
         XXXXXXX,KC_A, LT(SYMB, KC_S),LCTL_T(KC_D),LSFT_T(KC_F),KC_G,XXXXXXX,   XXXXXXX,LT(MDIA,KC_H), LSFT_T(KC_J),LCTL_T(KC_K),LT(SYMB,KC_L),KC_SCLN,XXXXXXX,
-        KC_LSFT, KC_Z, KC_X,KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-    KC_GRV,XXXXXXX,A(KC_LSFT),KC_LEFT,  KC_RGHT, KC_LEAD,                         KC_LEAD,   KC_DOWN, KC_UP, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, KC_Z, KC_X,KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
+    XXXXXXX,XXXXXXX,XXXXXXX,KC_LEFT,  KC_RGHT, KC_LEAD,                         KC_LEAD,   KC_DOWN, KC_UP, XXXXXXX, XXXXXXX, XXXXXXX,
                                             LCMD_T(KC_SPC),  KC_BSPC, KC_MEH,           KC_LALT,  KC_ENT, LCMD_T(KC_ESC)),
 
     [SYMB] = LAYOUT_moonlander(
-        VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   TO(BASE),          _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-        _______, XXXXXXX, KC_BSLS,KC_QUOT, KC_SLSH, XXXXXXX, _______,           _______, KC_UP,   KC_7,    KC_8,    KC_9,    XXXXXXX, KC_F12,
-       _______,XXXXXXX,KC_MINS,LCTL_T(KC_PLUS),LSFT_T(KC_SCLN),KC_GRV,_______,   _______, KC_DOWN, LSFT_T(KC_4), LCTL_T(KC_5),    KC_6, XXXXXXX, XXXXXXX,
-    _______, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX,                             KC_AMPR, KC_1,    KC_2,    KC_3,    XXXXXXX, XXXXXXX,
-        _______, _______, _______, _______, _______,          XXXXXXX,           RGB_TOG,          KC_0, KC_DOT,  XXXXXXX, XXXXXXX,  XXXXXXX,
-                                            LT(SQUASH,KC_TAB), XXXXXXX, XXXXXXX,              XXXXXXX,KC_P,LT(SQUASH,KC_TAB) 
+        VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   TO(BASE),          XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        XXXXXXX, XXXXXXX, KC_BSLS,KC_QUOT, KC_SLSH, XXXXXXX, XXXXXXX,           XXXXXXX, KC_UP,   KC_7,    KC_8,    KC_9,    XXXXXXX, KC_F12,
+       XXXXXXX,XXXXXXX,KC_MINS,LCTL_T(KC_PLUS),LSFT_T(KC_SCLN),KC_GRV,XXXXXXX,   XXXXXXX, KC_DOWN, LSFT_T(KC_4), LCTL_T(KC_5),    KC_6, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX,                       XXXXXXX, KC_1,    KC_2,    KC_3,    XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,           XXXXXXX,          KC_0, XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX,
+                                  LT(SQUASH,KC_TAB), XXXXXXX, XXXXXXX,           XXXXXXX,XXXXXXX,LT(SQUASH,KC_TAB) 
     ),
 
     [SQUASH] = LAYOUT_moonlander(
         XXXXXXX,XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, TO(BASE),           TO(BASE), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX,    XXXXXXX, KC_Q, KC_T,    XXXXXXX, XXXXXXX,              XXXXXXX, XXXXXXX, KC_Y, KC_P, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX,XXXXXXX, LCTL_T(KC_A),LSFT_T(KC_G),XXXXXXX, XXXXXXX,     XXXXXXX,XXXXXXX,LSFT_T(KC_H),LCTL_T(KC_BSPC), XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, KC_Z, KC_B,    XXXXXXX,                             XXXXXXX, KC_N, KC_SLSH, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX,XXXXXXX, LCTL_T(KC_A),LSFT_T(KC_G),XXXXXXX, XXXXXXX,     XXXXXXX,XXXXXXX,LSFT_T(KC_H),LCTL_T(KC_DOT), XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_Z, KC_B,    XXXXXXX,                             XXXXXXX, KC_N, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,           XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                XXXXXXX, XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, XXXXXXX
     ),
@@ -124,6 +124,10 @@ void set_number_key_led_white(uint8_t layer_num) {
       break;
     case SQUASH:
       rgb_matrix_set_color(10, 0xff, 0xff, 0xff);
+      // left qaz 
+      //rgb_matrix_set_color(6, 0xff, 0, 0);
+      //rgb_matrix_set_color(7, 0xff, 0, 0);
+      //rgb_matrix_set_color(8, 0xff, 0, 0);
       break;
     case MDIA:
       rgb_matrix_set_color(15, 0xff, 0xff, 0xff);
