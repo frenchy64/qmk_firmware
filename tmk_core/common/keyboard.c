@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"
 #include "keycode.h"
 #include "timer.h"
+#include "sync_timer.h"
 #include "print.h"
 #include "debug.h"
 #include "command.h"
@@ -235,12 +236,27 @@ __attribute__((weak)) bool is_keyboard_left(void) { return true; }
  */
 __attribute__((weak)) bool should_process_keypress(void) { return is_keyboard_master(); }
 
+/** \brief housekeeping_task_kb
+ *
+ * Override this function if you have a need to execute code for every keyboard main loop iteration.
+ * This is specific to keyboard-level functionality.
+ */
+__attribute__((weak)) void housekeeping_task_kb(void) {}
+
+/** \brief housekeeping_task_user
+ *
+ * Override this function if you have a need to execute code for every keyboard main loop iteration.
+ * This is specific to user/keymap-level functionality.
+ */
+__attribute__((weak)) void housekeeping_task_user(void) {}
+
 /** \brief keyboard_init
  *
  * FIXME: needs doc
  */
 void keyboard_init(void) {
     timer_init();
+    sync_timer_init();
     matrix_init();
 #ifdef VIA_ENABLE
     via_init();
@@ -291,6 +307,10 @@ void keyboard_init(void) {
     dip_switch_init();
 #endif
 
+#if defined(DEBUG_MATRIX_SCAN_RATE) && defined(CONSOLE_ENABLE)
+    debug_enable = true;
+#endif
+
     keyboard_post_init_kb(); /* Always keep this last */
 }
 
@@ -314,6 +334,9 @@ void keyboard_task(void) {
 #ifdef QMK_KEYS_PER_SCAN
     uint8_t keys_processed = 0;
 #endif
+
+    housekeeping_task_kb();
+    housekeeping_task_user();
 
 #if defined(OLED_DRIVER_ENABLE) && !defined(OLED_DISABLE_TIMEOUT)
     uint8_t ret = matrix_scan();
