@@ -26,6 +26,9 @@
 #define TAPPING_TERM 150
 // better handling of fast mod taps
 #define PERMISSIVE_HOLD
+// holding a dual tapping key outside timeout still sends
+// tapping key if no other key is pressed
+#define RETRO_TAPPING
 // how long in ms a combo times out
 #define COMBO_TERM 10
 // backlight indicators for current layer
