@@ -175,71 +175,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-// leaders
-LEADER_EXTERNS();
-
-void matrix_scan_user(void) {
-  LEADER_DICTIONARY() {
-    leading = false;
-    leader_end();
-
-    SEQ_THREE_KEYS(KC_S, KC_H, KC_A) {
-      SEND_STRING("#");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_B, KC_A) {
-      SEND_STRING("!");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_P, KC_E) {
-      SEND_STRING("%");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_C, KC_A) {
-      SEND_STRING("^");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_A, KC_M) {
-      SEND_STRING("&");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_S, KC_T) {
-      SEND_STRING("*");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_A, KC_T) {
-      SEND_STRING("@");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_U, KC_N) {
-      SEND_STRING("_");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_M, KC_I) {
-      SEND_STRING("-");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_P, KC_L) {
-      SEND_STRING("+");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_T, KC_I) {
-      SEND_STRING("~");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_Q, KC_Q) {
-      SEND_STRING("`");
-    }
-    SEQ_THREE_KEYS(KC_S, KC_Q, KC_U) {
-      SEND_STRING("'");
-    }
-
-
-    //SEQ_ONE_KEY(KC_F) {
-    //  // Anything you can do in a macro.
-    //  SEND_STRING("QMK is awesome.");
-    //}
-    //SEQ_TWO_KEYS(KC_D, KC_D) {
-    //  SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
-    //}
-    //SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
-    //  SEND_STRING("https://start.duckduckgo.com\n");
-    //}
-    //SEQ_TWO_KEYS(KC_A, KC_S) {
-    //  register_code(KC_LGUI);
-    //  register_code(KC_S);
-    //  unregister_code(KC_S);
-    //  unregister_code(KC_LGUI);
-    //}
-  }
+void leader_end_user(void) {
+  if (leader_sequence_three_keys(KC_S, KC_H, KC_A)) { SEND_STRING("#"); }
+  if (leader_sequence_three_keys(KC_S, KC_B, KC_A)) { SEND_STRING("!"); }
+  if (leader_sequence_three_keys(KC_S, KC_P, KC_E)) { SEND_STRING("%"); }
+  if (leader_sequence_three_keys(KC_S, KC_C, KC_A)) { SEND_STRING("^"); }
+  if (leader_sequence_three_keys(KC_S, KC_A, KC_M)) { SEND_STRING("&"); }
+  if (leader_sequence_three_keys(KC_S, KC_S, KC_T)) { SEND_STRING("*"); }
+  if (leader_sequence_three_keys(KC_S, KC_A, KC_T)) { SEND_STRING("@"); }
+  if (leader_sequence_three_keys(KC_S, KC_U, KC_N)) { SEND_STRING("_"); }
+  if (leader_sequence_three_keys(KC_S, KC_M, KC_I)) { SEND_STRING("-"); }
+  if (leader_sequence_three_keys(KC_S, KC_P, KC_L)) { SEND_STRING("+"); }
+  if (leader_sequence_three_keys(KC_S, KC_T, KC_I)) { SEND_STRING("~"); }
+  if (leader_sequence_three_keys(KC_S, KC_Q, KC_Q)) { SEND_STRING("`"); }
+  if (leader_sequence_three_keys(KC_S, KC_Q, KC_U)) { SEND_STRING("'"); }
 }
-
