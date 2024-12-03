@@ -30,7 +30,7 @@ enum layers {
 };
 
 enum custom_keycodes {
-    VRSN = ML_SAFE_RANGE,
+    VRSN = SAFE_RANGE,
 };
 
 // clang-format off
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        XXXXXXX,XXXXXXX,KC_MINS,LCTL_T(KC_PLUS),LSFT_T(KC_SCLN),KC_GRV,XXXXXXX,   XXXXXXX, KC_DOWN, LSFT_T(KC_4),LCTL_T(KC_5),KC_6, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX,                                 XXXXXXX, KC_1,    KC_2,    KC_3,    XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,           XXXXXXX,          KC_0, XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX,
-                                  LT(SQUASH,KC_TAB), XXXXXXX, XXXXXXX,           XXXXXXX,XXXXXXX,LT(SQUASH,KC_TAB) 
+                                  LT(SQUASH,KC_TAB), XXXXXXX, XXXXXXX,           XXXXXXX,XXXXXXX,LT(SQUASH,KC_TAB)
     ),
 
     [SQUASH] = LAYOUT_moonlander(
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef CONSOLE_ENABLE
     dprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
-#endif 
+#endif
 
     if (record->event.pressed) {
         switch (keycode) {
@@ -124,7 +124,7 @@ void set_number_key_led_white(uint8_t layer_num) {
       break;
     case SQUASH:
       rgb_matrix_set_color(10, 0xff, 0xff, 0xff);
-      // left qaz 
+      // left qaz
       //rgb_matrix_set_color(6, 0xff, 0, 0);
       //rgb_matrix_set_color(7, 0xff, 0, 0);
       //rgb_matrix_set_color(8, 0xff, 0, 0);
@@ -170,7 +170,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       rgb_matrix_set_color_all(0, 0, 0);
       break;
   }
-#endif 
+#endif
 
     return state;
 }
