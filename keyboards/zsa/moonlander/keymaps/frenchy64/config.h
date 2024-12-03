@@ -20,8 +20,6 @@
 
 #define ORYX_CONFIGURATOR
 
-// the number of combos used in keymap.c
-#define COMBO_COUNT 9
 // how long in ms before a tap becomes a hold
 #define TAPPING_TERM 150
 // better handling of fast mod taps
