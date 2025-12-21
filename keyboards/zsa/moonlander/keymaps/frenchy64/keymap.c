@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MDIA] = LAYOUT_moonlander(
         LED_LEVEL,_______,   _______, _______, _______,    _______, TO(BASE),           TO(BASE), _______, _______, _______, _______, _______, RESET,
         _______, _______,    MS_WHLU, MS_UP,   MS_WHLD,    _______, _______,           _______, _______, _______, _______, _______, _______, _______,
-        _______, _______,    MS_LEFT, MS_DOWN, MS_RGHT,    _______, _______,           _______, _______, _______, _______, _______, _______, KC_MPLY,
+        _______, _______,    MS_LEFT, MS_DOWN, MS_RGHT,    _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,    _______,                             _______, _______, KC_MPRV, KC_MNXT, _______, _______,
         _______, _______,    _______, _______, _______,          _______,           _______,          KC_VOLU, KC_VOLD, KC_MUTE, _______, _______,
                                                MS_BTN1,   MS_BTN2, _______,           MS_ACL2, MS_ACL1, MS_ACL0
@@ -145,7 +145,7 @@ void set_number_key_led_white(uint8_t layer_num) {
       rgb_matrix_set_color(49, 0xff, 0xff, 0);  // 3
       rgb_matrix_set_color(68, 0, 0, 0xff);     // tab
       rgb_matrix_set_color(32, 0, 0, 0xff);     // tab
-      break;;
+      break;
     case SQUASH:
       // 2 key
       rgb_matrix_set_color(10, 0xff, 0xff, 0xff);
