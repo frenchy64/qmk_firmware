@@ -116,13 +116,35 @@ void set_number_key_led_white(uint8_t layer_num) {
     case BASE:
       // top left layer indicator
       rgb_matrix_set_color(0, 0xff, 0xff, 0xff);
-      //test
-      rgb_matrix_set_color(72, 0xff, 0xff, 0xff);
       break;
     case SYMB:
+      // 1 key
       rgb_matrix_set_color(5, 0xff, 0xff, 0xff);
-      break;
+      // left hand side symbols
+      rgb_matrix_set_color(11, 0xff, 0xff, 0xff);  // backslash
+      rgb_matrix_set_color(16, 0xff, 0xff, 0xff);  // '
+      rgb_matrix_set_color(21, 0xff, 0xff, 0xff);  // /
+      rgb_matrix_set_color(12, 0xff, 0xff, 0xff);  // -
+      rgb_matrix_set_color(17, 0xff, 0xff, 0xff);  // =
+      rgb_matrix_set_color(22, 0xff, 0xff, 0xff);  // ;
+      rgb_matrix_set_color(27, 0xff, 0xff, 0xff);  // `
+      rgb_matrix_set_color(18, 0xff, 0xff, 0xff);  // [
+      rgb_matrix_set_color(23, 0xff, 0xff, 0xff);  // ]
+      // right hand side symbols
+      rgb_matrix_set_color(62, 0xff, 0, 0);  // up
+      rgb_matrix_set_color(63, 0xff, 0, 0);  // down
+      rgb_matrix_set_color(57, 0xff, 0xff, 0);  // 7
+      rgb_matrix_set_color(58, 0xff, 0xff, 0);  // 4
+      rgb_matrix_set_color(59, 0xff, 0xff, 0);  // 1
+      rgb_matrix_set_color(52, 0xff, 0xff, 0);  // 8
+      rgb_matrix_set_color(53, 0xff, 0xff, 0);  // 5
+      rgb_matrix_set_color(54, 0xff, 0xff, 0);  // 2
+      rgb_matrix_set_color(47, 0xff, 0xff, 0);  // 9
+      rgb_matrix_set_color(48, 0xff, 0xff, 0);  // 6
+      rgb_matrix_set_color(49, 0xff, 0xff, 0);  // 3
+      break;;
     case SQUASH:
+      // 2 key
       rgb_matrix_set_color(10, 0xff, 0xff, 0xff);
       // left qaz
       //rgb_matrix_set_color(6, 0xff, 0, 0);
@@ -130,6 +152,7 @@ void set_number_key_led_white(uint8_t layer_num) {
       //rgb_matrix_set_color(8, 0xff, 0, 0);
       break;
     case MDIA:
+      // 3 key
       rgb_matrix_set_color(15, 0xff, 0xff, 0xff);
       // mouse keys
       rgb_matrix_set_color(16, 0xff, 0xff, 0xff);
