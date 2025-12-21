@@ -161,6 +161,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       dprintf("SYMB layer\n");
       set_number_key_led_white(SYMB);
       break;
+    case SQUASH:
+      dprintf("SQUASH layer\n");
+      set_number_key_led_white(SQUASH);
+      break;
     case MDIA:
       dprintf("MDIA layer\n");
       set_number_key_led_white(MDIA);
