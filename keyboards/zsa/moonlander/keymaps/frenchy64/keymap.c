@@ -136,12 +136,15 @@ void set_number_key_led_white(uint8_t layer_num) {
       rgb_matrix_set_color(57, 0xff, 0xff, 0);  // 7
       rgb_matrix_set_color(58, 0xff, 0xff, 0);  // 4
       rgb_matrix_set_color(59, 0xff, 0xff, 0);  // 1
+      rgb_matrix_set_color(60, 0xff, 0xff, 0);  // 0
       rgb_matrix_set_color(52, 0xff, 0xff, 0);  // 8
       rgb_matrix_set_color(53, 0xff, 0xff, 0);  // 5
       rgb_matrix_set_color(54, 0xff, 0xff, 0);  // 2
       rgb_matrix_set_color(47, 0xff, 0xff, 0);  // 9
       rgb_matrix_set_color(48, 0xff, 0xff, 0);  // 6
       rgb_matrix_set_color(49, 0xff, 0xff, 0);  // 3
+      rgb_matrix_set_color(68, 0, 0, 0xff);     // tab
+      rgb_matrix_set_color(32, 0, 0, 0xff);     // tab
       break;;
     case SQUASH:
       // 2 key
